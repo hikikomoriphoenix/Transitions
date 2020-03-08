@@ -4,15 +4,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.transition.Fade
 import android.transition.Slide
 import android.transition.TransitionManager
 import android.transition.TransitionSet
 import android.view.Gravity
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerViewTransitionsActivity : AppCompatActivity() {
     private val data = ArrayList<String>()

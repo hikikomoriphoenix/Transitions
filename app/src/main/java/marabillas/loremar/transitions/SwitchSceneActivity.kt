@@ -3,11 +3,11 @@ package marabillas.loremar.transitions
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v7.app.AppCompatActivity
 import android.transition.ChangeBounds
 import android.transition.Scene
 import android.transition.TransitionManager
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 
 class SwitchSceneActivity : AppCompatActivity() {
     private var root: ViewGroup? = null

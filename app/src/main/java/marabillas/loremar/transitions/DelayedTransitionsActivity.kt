@@ -5,12 +5,12 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AppCompatActivity
 import android.transition.TransitionManager
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 
 class DelayedTransitionsActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
