@@ -15,16 +15,15 @@ class BFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = TransitionSet().apply {
-                addTransition(ChangeBounds())
-                addTransition(Fade())
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    addTransition(ChangeTransform())
-                    addTransition(ChangeImageTransform())
-                }
+            addTransition(ChangeBounds())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                addTransition(ChangeTransform())
+                addTransition(ChangeImageTransform())
             }
-            .addTransition(ChangeBounds())
-            .addTransition(Fade())
-        sharedElementReturnTransition = Fade()
+            duration = 1000
+        }
+        enterTransition = Fade().apply { duration = 1000 }
+        exitTransition = Fade().apply { duration = 1000 }
     }
 
     override fun onCreateView(

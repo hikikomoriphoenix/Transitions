@@ -6,10 +6,10 @@ import android.transition.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AFragment : Fragment() {
 
@@ -17,13 +17,14 @@ class AFragment : Fragment() {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = TransitionSet().apply {
             addTransition(ChangeBounds())
-            addTransition(Fade())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 addTransition(ChangeTransform())
                 addTransition(ChangeImageTransform())
             }
+            duration = 1000
         }
-        sharedElementReturnTransition = Fade()
+        enterTransition = Fade().apply { duration = 1000 }
+        exitTransition = Fade().apply { duration = 1000 }
     }
 
     override fun onCreateView(
@@ -34,7 +35,7 @@ class AFragment : Fragment() {
         postponeEnterTransition()
         return inflater.inflate(R.layout.fragment_a, container, false).apply {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                findViewById<TextView>(R.id.text_a).transitionName = "shared"
+                findViewById<FloatingActionButton>(R.id.button_a).transitionName = "shared"
             }
             doOnPreDraw { startPostponedEnterTransition() }
         }
@@ -44,7 +45,7 @@ class AFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         view?.postDelayed({
-            activity?.findViewById<TextView>(R.id.text_a)?.let {
+            activity?.findViewById<FloatingActionButton>(R.id.button_a)?.let {
                 fragmentManager
                     ?.beginTransaction()
                     ?.setReorderingAllowed(true)
@@ -52,6 +53,6 @@ class AFragment : Fragment() {
                     ?.replace(R.id.main, BFragment())
                     ?.commit()
             }
-        }, 1000)
+        }, 3000)
     }
 }
