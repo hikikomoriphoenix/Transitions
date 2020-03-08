@@ -1,8 +1,9 @@
 package marabillas.loremar.sharedelementtransitions
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.transition.*
+import android.transition.Fade
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,21 +11,23 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialArcMotion
+import com.google.android.material.transition.MaterialContainerTransform
 
 class AFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionSet().apply {
-            addTransition(ChangeBounds())
+        sharedElementEnterTransition = MaterialContainerTransform(requireContext()).apply {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                addTransition(ChangeTransform())
-                addTransition(ChangeImageTransform())
+                pathMotion = MaterialArcMotion()
             }
+            scrimColor = Color.TRANSPARENT
             duration = 1000
         }
         enterTransition = Fade().apply { duration = 1000 }
-        exitTransition = Fade().apply { duration = 1000 }
+        exitTransition = Hold().apply { duration = 1000 }
     }
 
     override fun onCreateView(

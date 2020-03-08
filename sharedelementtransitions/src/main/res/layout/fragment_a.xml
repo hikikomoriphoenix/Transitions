@@ -17,8 +17,9 @@
                 android:id="@+id/button_a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
+                android:layout_gravity="bottom|end"
                 android:layout_marginBottom="56dp"
+                android:layout_marginEnd="16dp"
                 app:srcCompat="@drawable/ic_add_24dp" />
 
     </FrameLayout>
