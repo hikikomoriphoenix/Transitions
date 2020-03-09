@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import com.google.android.material.transition.Hold
 import com.google.android.material.transition.MaterialArcMotion
@@ -34,12 +33,10 @@ class BFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        postponeEnterTransition()
         return inflater.inflate(R.layout.fragment_b, container, false).apply {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 findViewById<ImageView>(R.id.image_b)?.transitionName = "shared"
             }
-            doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 
@@ -50,7 +47,6 @@ class BFragment : Fragment() {
             activity?.findViewById<ImageView>(R.id.image_b)?.let {
                 fragmentManager
                     ?.beginTransaction()
-                    ?.setReorderingAllowed(true)
                     ?.addSharedElement(it, it.transitionName)
                     ?.replace(R.id.main, AFragment())
                     ?.commit()

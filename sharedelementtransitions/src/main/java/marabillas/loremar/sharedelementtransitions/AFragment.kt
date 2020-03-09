@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.Hold
@@ -35,12 +34,10 @@ class AFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        postponeEnterTransition()
         return inflater.inflate(R.layout.fragment_a, container, false).apply {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 findViewById<FloatingActionButton>(R.id.button_a).transitionName = "shared"
             }
-            doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 
@@ -51,7 +48,6 @@ class AFragment : Fragment() {
             activity?.findViewById<FloatingActionButton>(R.id.button_a)?.let {
                 fragmentManager
                     ?.beginTransaction()
-                    ?.setReorderingAllowed(true)
                     ?.addSharedElement(it, it.transitionName)
                     ?.replace(R.id.main, BFragment())
                     ?.commit()
